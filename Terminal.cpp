@@ -2,81 +2,71 @@
 #include <string>
 #include <ctime>
 using namespace std;
+    string user;
 
-void help_command(){
+void help(){
     cout<<"Here are all cammand"<<"\n";
     cout<<"help : To Shows all commands "<<"\n"<<"clear : To Clears screen "<<"\n"<<"exit : To Closes terminal "<<"\n"<<"about : To see info of terminal"<<"\n"<<"versoin: for chacking os versoin"<<"\n"<<"time: for watching time"<<"\n"<<"hc : change color to green"<<"\n";
 
 }
-void about_command(){
+
+void about(){
      cout<<"casia terminal devlop by Chitraksh Sahu aka Persia Rossi"<<"\n"<<"YouTube : www.youtube.com/@PersiaRossi"<<"\n""insta : https://www.instagram.com/persia_rossi"<<"\n""gethub : https://github.com/PersiaRossi"<<"\n";
 }
 
-void version_command(){
+void version(){
     cout<< "CasiaOs v0.1"<<"\n";
     }
 
-
-
-void claer_command(){
+void claer(){
     system("cls");
 }
 
-void time_command(){
+void time(){
     time_t now = time(0);
     cout<< ctime(&now);
     
     }
-
-
+ 
 int main(){
 
-    cout<<"casia os booting"<<"\n";
-    cout<<"casia os started"<<"\n";
-    
+    cout<<"--------------------------------------------------------------------"<<"\n";
+    cout<<"                            COREX                                   "<<"\n";
+    cout<<"--------------------------------------------------------------------"<<"\n";
+
 
    while (true)
     {
-    // first line show in terminal
+    // first line show in terminal    
 
     cout<<"Casia terminal > ";
-    string user;
     getline(cin,user);
 
     // for help
     if (user == "help"){
-        help_command();
+        help();
 
     }
-
     // for exit
     else if (user == "exit"){
         break;
     }
-
     // for about
     else if (user == "about"){
-        about_command();
+        about();
     } 
-
     // for clear
     else if (user == "clear"){
-        claer_command();
+        claer();
     }
     // for chacking versoin
     else if(user == "version"){
-        version_command();
+        version();
         }
      // for watching time
      else if(user == "time"){
-         time_command();
+         time();
          }
-      // for green color
-      else if(user == "hc"){
-          system("color a0");
-      
-      }
-
     //  if user write unknown command
     else
     {
@@ -86,4 +76,5 @@ int main(){
     }
 
     return 0;
+}
 }
