@@ -2,99 +2,100 @@
 #include <string>
 #include <ctime>
 #include <fstream>
+#include <limits>
+
 using namespace std;
-    string user;
-    string fi;
 
-void help(){
-    cout<<"Here are all cammand"<<"\n";
-    cout<<"help : To Shows all commands "<<"\n"<<"clear : To Clears screen "<<"\n"<<"exit : To Closes terminal "<<"\n"<<"about : To see info of terminal"<<"\n"<<"versoin: for chacking os versoin"<<"\n"<<"time: for watching time"<<"\n"<<"cre : for createing text file"<<"\n";
+string user;
+string fi;
 
+void help() {
+    cout << "Here are all commands\n";
+    cout << "help    : Shows all commands\n";
+    cout << "clear   : Clears screen\n";
+    cout << "exit    : Closes terminal\n";
+    cout << "about   : Shows terminal information\n";
+    cout << "version : Shows Corex version\n";
+    cout << "time    : Shows current time\n";
 }
 
-void about(){
-     cout<<"Corex terminal devlop by Chitraksh Sahu aka Persia Rossi"<<"\n"<<"YouTube : www.youtube.com/@PersiaRossi"<<"\n""insta : https://www.instagram.com/persia_rossi"<<"\n""github : https://github.com/PersiaRossi"<<"\n";
+void about() {
+    cout << "Corex Terminal developed by Chitraksh Sahu (Persia Rossi)\n";
+    cout << "YouTube : www.youtube.com/@PersiaRossi\n";
+    cout << "Instagram : https://www.instagram.com/persia_rossi\n";
+    cout << "GitHub : https://github.com/PersiaRossi\n";
 }
 
-void version(){
-    cout<< "Corex v0.1"<<"\n";
-    }
+void version() {
+    cout << "Corex v0.1\n";
+}
 
-void claer(){
+void clearScreen() {
+#ifdef _WIN32
     system("cls");
+#else
+    system("clear");
+#endif
 }
 
-void show_time(){
+void show_time() {
     time_t now = time(0);
-    cout<< ctime(&now);
-    
+    cout << ctime(&now);
+}
+
+void files() {
+    cout << "Enter file name (include .txt): ";
+
+    getline(cin, fi);
+
+    ofstream out(fi);
+
+    if (out) {
+        cout << "File created successfully!\n";
+    } else {
+        cout << "Failed to create file!\n";
     }
 
-void files(){
-
-    cout<<"Name file at last addd .txt"<<"\n";
-    cin>>fi;
-    ofstream out(fi);
-    out<<fi;
-    cout<<"file created"<<"\n";
-
+    out.close();
 }
 
-int main(){
+int main() {
+
     cout << R"(
 _______________________________
  / ___| / _ \|  _ \| ____\ \/ /
 | |    | | | | |_) |  _|  \  /
 | |___ | |_| |  _ <| |___ /  \
  \____| \___/|_| \_\_____/_/\_\
-
-
 )";
-   while (true)
-    {
-    // first line show in terminal    
 
-    cout<<"COREX terminal > ";
-    getline(cin,user);
+    while (true) {
 
-    // for help
-    if (user == "help"){
-        help();
+        cout << "\nCOREX terminal > ";
+        getline(cin, user);
 
-    }
-    // for exit
-    else if (user == "exit"){
-        break;
-    }
-    // for about
-    else if (user == "about"){
-        about();
-    } 
-    // for clear
-    else if (user == "clear"){
-        claer();
-    }
-    // for chacking versoin
-    else if(user == "version"){
-        version();
+        if (user == "help") {
+            help();
         }
-     // for watching time
-    else if(user == "time"){
-         show_time();
-       }  
-
-    // for create txt file
-    else if (user== "cre")
-    {
-        files();
-    }
-    
-    //  if user write unknown command
-    else
-    {
-        cout<<"Error : Unknown command\n";
-    }
-
+        else if (user == "exit") {
+            break;
+        }
+        else if (user == "about") {
+            about();
+        }
+        else if (user == "clear") {
+            clearScreen();
+        }
+        else if (user == "version") {
+            version();
+        }
+        else if (user == "time") {
+            show_time();
+        }
+       
+        else {
+            cout << "Error: Unknown command\n";
+        }
     }
 
     return 0;
